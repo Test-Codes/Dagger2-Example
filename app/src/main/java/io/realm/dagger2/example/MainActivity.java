@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         BaseApplication app = (BaseApplication) getApplication();
         NetworkComponent networkComponent = app.getNetworkComponent();
         TwitterComponent twitterComponent = networkComponent.plus(new TwitterModule("TheFinestArtist"));
