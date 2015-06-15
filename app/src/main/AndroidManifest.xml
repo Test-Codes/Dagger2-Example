@@ -4,12 +4,13 @@
 
     <application
         android:allowBackup="true"
+        android:name=".BaseApplication"
         android:icon="@mipmap/ic_launcher"
-        android:label="Dagger2 Example"
+        android:label="dagger2 Example"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
-            android:label="Dagger2 Example">
+            android:label="dagger2 Example">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
