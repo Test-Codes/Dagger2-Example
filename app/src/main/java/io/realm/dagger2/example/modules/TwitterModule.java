@@ -4,7 +4,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.realm.dagger2.example.MainActivity;
 import io.realm.dagger2.example.networks.TwitterApi;
 import io.realm.dagger2.example.twitters.Timeline;
 import io.realm.dagger2.example.twitters.Tweeter;
@@ -12,12 +11,7 @@ import io.realm.dagger2.example.twitters.Tweeter;
 /**
  * Created by TheFinestArtist on 6/15/15.
  */
-@Module(
-        library = true,
-        injects = {
-                MainActivity.class
-        }
-)
+@Module
 public class TwitterModule {
 
     private final String username;

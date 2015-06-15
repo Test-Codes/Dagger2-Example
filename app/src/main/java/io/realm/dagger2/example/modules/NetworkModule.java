@@ -10,9 +10,7 @@ import io.realm.dagger2.example.networks.TwitterApi;
 /**
  * Created by TheFinestArtist on 6/15/15.
  */
-@Module(
-        library = true
-)
+@Module
 public class NetworkModule {
 
     @Provides
@@ -23,7 +21,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public TwitterApi provideTwitterApi(OkHttpClient okHttpClient) {
+    public TwitterApi provoideTwitterApi(OkHttpClient okHttpClient) {
         return new TwitterApi(okHttpClient);
     }
 }

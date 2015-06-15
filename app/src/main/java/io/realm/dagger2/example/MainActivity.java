@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import javax.inject.Inject;
-
-import dagger.ObjectGraph;
+import io.realm.dagger2.example.components.DaggerTwitterComponent;
+import io.realm.dagger2.example.components.TwitterComponent;
 import io.realm.dagger2.example.models.Tweet;
 import io.realm.dagger2.example.modules.TwitterModule;
 import io.realm.dagger2.example.twitters.Timeline;
@@ -16,9 +15,7 @@ import io.realm.dagger2.example.twitters.Tweeter;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @Inject
     Tweeter tweeter;
-    @Inject
     Timeline timeline;
 
     @Override
@@ -26,12 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BaseApplication app = (BaseApplication) getApplication();
-        ObjectGraph og = app.getObjectGraph();
-        og.plus(new TwitterModule("TheFinestArtist")).inject(this);
+        TwitterComponent twitterComponent = DaggerTwitterComponent.builder()
+                .twitterModule(new TwitterModule("TheFinestArtist"))
+                .build();
+
+        tweeter = twitterComponent.tweeter();
+        timeline = twitterComponent.timeline();
 
         tweeter.tweet("Hello");
-
         findViewById(R.id.showMore).setOnClickListener(this);
     }
 
