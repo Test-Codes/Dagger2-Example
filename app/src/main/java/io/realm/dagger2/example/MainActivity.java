@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import io.realm.dagger2.example.components.DaggerTwitterComponent;
+import io.realm.dagger2.example.components.NetworkComponent;
 import io.realm.dagger2.example.components.TwitterComponent;
 import io.realm.dagger2.example.models.Tweet;
 import io.realm.dagger2.example.modules.TwitterModule;
@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TwitterComponent twitterComponent = DaggerTwitterComponent.builder()
-                .twitterModule(new TwitterModule("TheFinestArtist"))
-                .build();
+
+        BaseApplication app = (BaseApplication) getApplication();
+        NetworkComponent networkComponent = app.getNetworkComponent();
+        TwitterComponent twitterComponent = networkComponent.plus(new TwitterModule("TheFinestArtist"));
 
         tweeter = twitterComponent.tweeter();
         timeline = twitterComponent.timeline();
